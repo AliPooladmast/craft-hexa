@@ -1,0 +1,45 @@
+<!-- <div *ngIf="courses.length > 0; then coursesList; else noCourse"></div>
+<ng-template #coursesList> List of courses </ng-template>
+<ng-template #noCourse> No courses yet </ng-template> -->
+
+<!-- <ul class="nav nav-pills">
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      [class.active]="viewMode === 'map'"
+      (click)="viewMode = 'map'"
+      >Map View</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      [class.active]="viewMode === 'list'"
+      (click)="viewMode = 'list'"
+      >List View</a
+    >
+  </li>
+</ul>
+
+<div style="margin-top: 30px" [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">Map View Content</div>
+  <div *ngSwitchCase="'list'">List View Content</div>
+</div> -->
+
+<!-- <button class="btn btn-primary" (click)="onAdd()">Add</button>
+<ul>
+  <li *ngFor="let course of courses; index as i; even as isEven">
+    index : {{ i }} - name: {{ course.name }}
+    <span *ngIf="isEven">is even</span>
+    <button class="btn btn-secondary" (click)="onRemove(course)">Remove</button>
+  </li>
+</ul> -->
+
+<!-- <button class="btn btn-primary" (click)="loadCourses()">Load Courses</button>
+<ul>
+  <li *ngFor="let course of courses; trackBy: trackCourse">
+    name: {{ course.name }}
+  </li>
+</ul> -->
+
+<input type="text" [appInputFormat]="'lowercase'" />

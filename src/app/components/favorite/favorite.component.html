@@ -1,0 +1,12 @@
+<i
+  class="bi"
+  (click)="onClick()"
+  [ngClass]="{
+    'bi-star-fill': isFavorite,
+    'bi-star': !isFavorite,
+  }"
+  style="margin-right: 10px"
+></i>
+
+<input type="text" [(ngModel)]="searchText" />
+<p>{{ searchText | titleCase }}</p>
