@@ -31,6 +31,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { ArchiveComponent } from './components/archive/archive.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     ProfileComponent,
     NotFoundComponent,
+    ArchiveComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
+      { path: 'archive/:year/:month', component: ArchiveComponent },
       { path: 'followers', component: GitFollowersComponent },
       { path: 'followers/:id', component: ProfileComponent },
       { path: 'posts', component: PostsComponent },
