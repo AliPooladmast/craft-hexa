@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  archives = [
-    { year: 2017, month: 1 },
-    { year: 2017, month: 2 },
-    { year: 2017, month: 3 },
-  ];
+  constructor(public authService: AuthService) {}
+
+  onLogout() {
+    this.authService.logout();
+  }
 }

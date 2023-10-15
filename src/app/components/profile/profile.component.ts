@@ -7,16 +7,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(private router: ActivatedRoute, private programRouter: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe((params) => {
+    this.route.paramMap.subscribe((params) => {
       console.log(params.get('id'));
     });
   }
 
   submit() {
-    this.programRouter.navigate(['/followers'], {
+    this.router.navigate(['/followers'], {
       queryParams: { page: 1, order: 'newest' },
     });
   }

@@ -1,7 +1,7 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './components/course/courses.component';
 import { CourseComponent } from './components/course/course.component';
@@ -32,6 +32,22 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { ArchiveComponent } from './components/archive/archive.component';
+import { OrderService } from './services/order.service';
+import { AuthService } from './services/auth.service';
+import { AdminComponent } from './components/admin/admin.component';
+import { LoginComponent } from './components/login/login.component';
+import { NoAccessComponent } from './components/no-access/no-access.component';
+import { CommonModule } from '@angular/common';
+import { JwtModule } from '@auth0/angular-jwt';
+import {
+  AuthGuardService,
+  canActivateTeam,
+} from './services/auth-guard.service';
+import { canActivateAdmin } from './services/admin-auth-guard.service';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -59,23 +75,38 @@ import { ArchiveComponent } from './components/archive/archive.component';
     ProfileComponent,
     NotFoundComponent,
     ArchiveComponent,
+    LoginComponent,
+    AdminComponent,
+    LoginComponent,
+    NoAccessComponent,
   ],
+
   imports: [
+    CommonModule,
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+      },
+    }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'archive/:year/:month', component: ArchiveComponent },
-      { path: 'followers', component: GitFollowersComponent },
-      { path: 'followers/:id', component: ProfileComponent },
-      { path: 'posts', component: PostsComponent },
-      { path: '**', component: NotFoundComponent },
+      {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [canActivateTeam],
+      },
+      { path: 'login', component: LoginComponent },
+      { path: 'no-access', component: NoAccessComponent },
     ]),
   ],
   providers: [
+    OrderService,
+    AuthService,
     coursesService,
     PostService,
     { provide: ErrorHandler, useClass: AppErrorHandler },
